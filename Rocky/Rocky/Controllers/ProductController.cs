@@ -7,22 +7,22 @@ using System.Data.SqlTypes;
 
 namespace Rocky.Controllers
 {
-    public class ApplicationTypeController : Controller
+    public class ProductController : Controller
     {
         private readonly AppDbContext _db;
 
-        public ApplicationTypeController(AppDbContext db)
+        public ProductController(AppDbContext db)
         {
             _db = db;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<ApplicationType> ogjList = _db.ApplicationType;
+            IEnumerable<Category> ogjList = _db.Category;
             return View(ogjList);
         }
 
-        // GET - CREATE
+        // Get Create
         public IActionResult Create()
         {
             return View();
@@ -31,40 +31,41 @@ namespace Rocky.Controllers
         // POST - CREATE
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ApplicationType obj)
+        public IActionResult Create(Category obj)
         {
-            if(ModelState.IsValid) { 
-                _db.ApplicationType.Add(obj);
+            if (ModelState.IsValid)
+            {
+                _db.Category.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            }   
             return View(obj);
         }
 
         // GET - EDIT
         public IActionResult Edit(int? id)
         {
-            if (id == null || id == 0)
+            if(id == null || id == 0)
             {
                 return NotFound();
             }
-            var obj = _db.ApplicationType.Find(id);
-            if (obj == null)
+            var obj = _db.Category.Find(id);
+            if(obj == null) 
             {
                 return NotFound();
             }
 
-            return View(obj);
+            return View(obj);  
         }
 
         // POST - EDIT
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(ApplicationType obj)
+        public IActionResult Edit(Category obj)
         {
             if (ModelState.IsValid)
             {
-                _db.ApplicationType.Update(obj);
+                _db.Category.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -78,7 +79,7 @@ namespace Rocky.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.ApplicationType.Find(id);
+            var obj = _db.Category.Find(id);
             if (obj == null)
             {
                 return NotFound();
@@ -92,16 +93,17 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.ApplicationType.Find(id);
+            var obj = _db.Category.Find(id);
 
-            if (obj == null)
+            if(obj == null)
             {
                 return NotFound();
             }
 
-            _db.ApplicationType.Remove(obj);
+            _db.Category.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
     }
 }
