@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Rocky.Data;
+using Rocky.Migrations;
 using Rocky.Models;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Linq;
+using System.Security.Authentication;
 
 namespace Rocky.Controllers
 {
@@ -18,20 +22,49 @@ namespace Rocky.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Category> ogjList = _db.Category;
+            IEnumerable<Product> ogjList = _db.Product;
+
+            foreach(var obj in ogjList)
+            {
+                obj.Category = _db.Category.FirstOrDefault(u => u.Id == obj.CategoryId);
+            }
+
             return View(ogjList);
         }
 
-        // Get Create
-        public IActionResult Create()
+        // Get Upsert
+        public IActionResult Upsert(int? id)
         {
-            return View();
+            IEnumerable<SelectListItem> CategoryDropDown = _db.Category.Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            });
+
+            // ViewBag.CategoryDropDown = CategoryDropDown;
+            ViewData["CategoryDropDown"] = CategoryDropDown;
+
+            Product product = new Product();
+            if(id == null) 
+            { 
+                // this is for create
+                return View(product);
+            }
+            else
+            {
+                product = _db.Product.Find(id);
+                if(product == null)
+                {
+                    return NotFound();
+                }
+                return View(product);
+            }
         }
 
-        // POST - CREATE
+        // POST - Upsert
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category obj)
+        public IActionResult Upsert(Category obj)
         {
             if (ModelState.IsValid)
             {
@@ -39,36 +72,6 @@ namespace Rocky.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }   
-            return View(obj);
-        }
-
-        // GET - EDIT
-        public IActionResult Edit(int? id)
-        {
-            if(id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var obj = _db.Category.Find(id);
-            if(obj == null) 
-            {
-                return NotFound();
-            }
-
-            return View(obj);  
-        }
-
-        // POST - EDIT
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Category.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
             return View(obj);
         }
 

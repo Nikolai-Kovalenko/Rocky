@@ -441,3 +441,5 @@ F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Category\Edit.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Category\Delete.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\ApplicationType\Delete.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\ApplicationType\Edit.cshtml.g.cs
+F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
+F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Product\Upsert.cshtml.g.cs
