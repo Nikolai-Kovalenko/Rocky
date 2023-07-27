@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.Language.Intermediate;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
 using Rocky.Data;
 using Rocky.Models;
@@ -107,12 +108,45 @@ namespace Rocky.Controllers
                 else
                 {
                     //Updating
+                    var objFromDb = _db.Product.AsNoTracking().FirstOrDefault(u => u.Id == productVM.Product.Id);
+
+                    if(files.Count > 0)
+                    {
+                        string upload = webRootPath + WC.ImagePath;
+                        string fileName = Guid.NewGuid().ToString();
+                        string extension = Path.GetExtension(files[0].FileName);
+
+                        var oldFile = Path.Combine(upload, objFromDb.Image);
+
+                        if(System.IO.File.Exists(oldFile))
+                        {
+                            System.IO.File.Delete(oldFile);
+                        }
+
+                        using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                        {
+                            files[0].CopyTo(fileStream);
+                        }
+
+                        productVM.Product.Image = fileName + extension;
+                    }
+                    else
+                    {
+                        productVM.Product.Image = objFromDb.Image;
+                    }
+                    _db.Product.Update(productVM.Product);
                 }
 
                 _db.SaveChanges();
                 return RedirectToAction("Index");
-            }   
-            return View();
+            }
+
+            productVM.CategorySelectList = _db.Category.Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            })
+            return View(productVM);
         }
 
         // GET - DELETE
