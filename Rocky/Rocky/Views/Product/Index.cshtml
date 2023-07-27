@@ -25,6 +25,12 @@
                     <th>
                         Price
                     </th>
+                    <th>
+                        Categoty
+                    </th>
+                    <th>
+                        Application Type
+                    </th>
                     <th></th>
                 </tr>
             </tread>
@@ -32,8 +38,10 @@
                 @foreach (var obj in Model)
                 {
                     <tr>
-                        <td wight="50%">@obj.Name</td>
-                        <td wight="30%">@obj.Pcice</td>
+                        <td wight="30%">@obj.Name</td>
+                        <td wight="10%">@obj.Price</td>
+                        <td wight="20%">@obj.Category.Name</td>
+                        <td wight="20%">@obj.ApplicationType.Name</td>
                         <td class="text-center">
                             <div class="w-75 btn-group" role="group">
                                 <a asp-route-Id="@obj.Id" asp-action="Upsert" class="btn btn-primary mx-2">
