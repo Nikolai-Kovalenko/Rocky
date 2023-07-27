@@ -145,39 +145,47 @@ namespace Rocky.Controllers
             {
                 Text = i.Name,
                 Value = i.Id.ToString()
-            })
+            });
             return View(productVM);
         }
 
         // GET - DELETE
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
+            ProductVM productVM = new ProductVM()
             {
-                return NotFound();
-            }
-            var obj = _db.Category.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
+                Product = new Product(),
+                CategorySelectList = _db.Category.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
+            };
 
-            return View(obj);
+            productVM.Product = _db.Product.Find(id);
+            if (productVM.Product == null)
+            {
+                return NotFound();
+            }
+            return View(productVM);
         }
 
         // POST - DELETE
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int? id)
+        public IActionResult DeletePost(ProductVM productVM)
         {
-            var obj = _db.Category.Find(id);
+            var objFromDb = _db.Product.AsNoTracking().FirstOrDefault(u => u.Id == productVM.Product.Id);
 
-            if(obj == null)
+            string imagePathToDelete = Path.Combine(WC.ImagePath, objFromDb.Image);
+
+            if (System.IO.File.Exists(imagePathToDelete))
             {
-                return NotFound();
+                System.IO.File.Delete(imagePathToDelete);
             }
 
-            _db.Category.Remove(obj);
+            _db.Product.Remove(productVM.Product);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
