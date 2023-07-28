@@ -27,13 +27,13 @@ namespace Rocky.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Product> ogjList = _db.Product;
+            IEnumerable<Product> ogjList = _db.Product.Include(u=>u.Category).Include(u=>u.ApplicationType);
 
-            foreach(var obj in ogjList)
+/*            foreach(var obj in ogjList)
             {
                 obj.Category = _db.Category.FirstOrDefault(u => u.Id == obj.CategoryId);
                 obj.ApplicationType = _db.ApplicationType.FirstOrDefault(u => u.Id == obj.ApplicationTypeId);
-            }
+            }*/
 
             return View(ogjList);
         }
@@ -122,11 +122,23 @@ namespace Rocky.Controllers
                         string fileName = Guid.NewGuid().ToString();
                         string extension = Path.GetExtension(files[0].FileName);
 
-                        var oldFile = Path.Combine(upload, objFromDb.Image);
+                        if (productVM.Product.Image != null)
+                        {                             
+                            var oldFile = Path.Combine(upload, objFromDb.Image);
 
-                        if(System.IO.File.Exists(oldFile))
+                            if(System.IO.File.Exists(oldFile))
+                            {
+                                System.IO.File.Delete(oldFile);
+                            }
+                        }
+                        else
                         {
-                            System.IO.File.Delete(oldFile);
+                            using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                            {
+                                files[0].CopyTo(fileStream);
+                            }
+
+                            productVM.Product.Image = fileName + extension;
                         }
 
                         using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
