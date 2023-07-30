@@ -445,3 +445,4 @@ F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Product\Index.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Product\Upsert.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Product\Delete.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Shared\_IndivdualProductCard.cshtml.g.cs
+F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Home\Details.cshtml.g.cs
