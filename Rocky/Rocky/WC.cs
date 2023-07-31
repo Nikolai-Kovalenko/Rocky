@@ -10,5 +10,8 @@ namespace Rocky
     {
         public static string ImagePath = @"\images\product\";
         public static string SessionCart = "ShopCartSession";
+
+        public static string AdminRole = "Admin";   
+        public static string CustomerRole = "Customer";   
     }
 }
