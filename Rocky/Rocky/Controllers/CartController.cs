@@ -47,7 +47,7 @@ namespace Rocky.Controllers
         {
             
 
-            return RedirectToAction(nameof(Summary);
+            return RedirectToAction(nameof(Summary));
         }
          
         public IActionResult Summary()
@@ -69,7 +69,8 @@ namespace Rocky.Controllers
 
             ProductUserVM = new ProductUserVM()
             {
-                ApplicationUser = _db.ApplicationUser.FirstOrDefault(u => u.Id == claim.Value)
+                ApplicationUser = _db.ApplicationUser.FirstOrDefault(u => u.Id == claim.Value),
+                ProductList = prodList
             };
 
             return View(ProductUserVM);
