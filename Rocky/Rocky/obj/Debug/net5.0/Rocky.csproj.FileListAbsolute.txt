@@ -492,3 +492,4 @@ F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs
