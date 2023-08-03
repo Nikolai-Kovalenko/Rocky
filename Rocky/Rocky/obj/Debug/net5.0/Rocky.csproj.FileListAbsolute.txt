@@ -494,3 +494,5 @@ F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\Summary.cshtml.g.cs
+F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Mailjet.Client.dll
+F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\InquiryConfirmation.cshtml.g.cs
