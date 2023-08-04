@@ -1,13 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Rocky.Data;
 using Rocky.Models;
 using Rocky.Models.ViewModels;
 using Rocky.Utility;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Rocky.Controllers
 {
@@ -15,13 +20,17 @@ namespace Rocky.Controllers
     public class CartController : Controller
     {
         private readonly AppDbContext _db;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IEmailSender _emailSender;
 
         [BindProperty]
         public ProductUserVM ProductUserVM { get; set; }
 
-        public CartController(AppDbContext db)
+        public CartController(AppDbContext db, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender)
         {
             _db = db;
+            _webHostEnvironment = webHostEnvironment;
+            _emailSender = emailSender;
         }
 
         public IActionResult Index()
@@ -79,9 +88,39 @@ namespace Rocky.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(nameof(Summary))]
-        public IActionResult SummaryPost(ProductUserVM ProductUserVM)
+        public async Task<IActionResult> SummaryPost(ProductUserVM ProductUserVM)
         {
-            return RedirectToAction(nameof(InquiryConfirmation));
+            var PathToTemplate = _webHostEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString()
+                + "templates" + Path.DirectorySeparatorChar.ToString()
+                + "Inquiry.html";
+
+            var subject = "New Inquiry";
+            string HtmlBody = "";
+            using (StreamReader sr = System.IO.File.OpenText(PathToTemplate))
+            {
+                HtmlBody = sr.ReadToEnd();
+            }
+
+            // Name: { 0}
+            // Email: { 1}
+            // Phone: { 2}
+            // Products: { 3 }
+
+            StringBuilder ProductListSB = new StringBuilder();
+            foreach(var prod in ProductUserVM.ProductList) 
+            {
+                ProductListSB.Append($" - Name: {prod.Name} <span style='fonr-size:14px;'> (ID: {prod.Id})</span><br />");
+            }
+
+            string messageBody = string.Format(HtmlBody,
+                ProductUserVM.ApplicationUser.FullName,
+                ProductUserVM.ApplicationUser.Email,
+                ProductUserVM.ApplicationUser.PhoneNumber,
+                ProductListSB.ToString());
+
+            await _emailSender.SendEmailAsync(WC.EmailAdin, subject, messageBody);
+
+                return RedirectToAction(nameof(InquiryConfirmation));
         }
 
         public IActionResult InquiryConfirmation()

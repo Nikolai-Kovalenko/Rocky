@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mailjet.Client.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,10 +9,12 @@ namespace Rocky
 {
     public static class WC
     {
-        public static string ImagePath = @"\images\product\";
-        public static string SessionCart = "ShopCartSession";
+        public const string ImagePath = @"\images\product\";
+        public const string SessionCart = "ShopCartSession";
 
-        public static string AdminRole = "Admin";   
-        public static string CustomerRole = "Customer";   
+        public const string AdminRole = "Admin";   
+        public const string CustomerRole = "Customer";
+
+        public const string EmailAdin = "DFprotonMAil@proton.me";
     }
 }
