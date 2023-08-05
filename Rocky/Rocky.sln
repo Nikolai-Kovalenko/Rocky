@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rocky", "Rocky\Rocky.csproj", "{69E12D80-5500-4741-B8B2-C7417A2EE709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rocky", "Rocky\Rocky.csproj", "{69E12D80-5500-4741-B8B2-C7417A2EE709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rocky_Utility", "Rocky_Utility\Rocky_Utility.csproj", "{83E80E9C-8D6B-4592-82D8-580A31EE9F8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{69E12D80-5500-4741-B8B2-C7417A2EE709}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69E12D80-5500-4741-B8B2-C7417A2EE709}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69E12D80-5500-4741-B8B2-C7417A2EE709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83E80E9C-8D6B-4592-82D8-580A31EE9F8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E80E9C-8D6B-4592-82D8-580A31EE9F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E80E9C-8D6B-4592-82D8-580A31EE9F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E80E9C-8D6B-4592-82D8-580A31EE9F8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
