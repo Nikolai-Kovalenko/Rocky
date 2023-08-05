@@ -498,3 +498,7 @@ F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Mailjet.Client.dll
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\InquiryConfirmation.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Rocky_Utility.dll
 F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Rocky_Utility.pdb
+F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Rocky_Models.dll
+F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Rocky_Models.pdb

@@ -29,6 +29,9 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "F:\\Project\\RockProject\\Rocky\\Rocky_Models\\Rocky_Models.csproj": {
+                "projectPath": "F:\\Project\\RockProject\\Rocky\\Rocky_Models\\Rocky_Models.csproj"
+              },
               "F:\\Project\\RockProject\\Rocky\\Rocky_Utility\\Rocky_Utility.csproj": {
                 "projectPath": "F:\\Project\\RockProject\\Rocky\\Rocky_Utility\\Rocky_Utility.csproj"
               }
@@ -91,6 +94,71 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\Project\\RockProject\\Rocky\\Rocky_Models\\Rocky_Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\Project\\RockProject\\Rocky\\Rocky_Models\\Rocky_Models.csproj",
+        "projectName": "Rocky_Models",
+        "projectPath": "F:\\Project\\RockProject\\Rocky\\Rocky_Models\\Rocky_Models.csproj",
+        "packagesPath": "C:\\Users\\nik\\.nuget\\packages\\",
+        "outputPath": "F:\\Project\\RockProject\\Rocky\\Rocky_Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\nik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.ViewFeatures": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

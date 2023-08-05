@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Rocky.Models.ViewModels
+namespace Rocky_Models.ViewModels
 {
     public class HomeVM
     {
