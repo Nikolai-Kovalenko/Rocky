@@ -1,0 +1,15 @@
+F:\Project\RockProject\Rocky\Rocky_DatAccess\bin\Debug\net5.0\Rocky_DatAccess.deps.json
+F:\Project\RockProject\Rocky\Rocky_DatAccess\bin\Debug\net5.0\Rocky_DatAccess.dll
+F:\Project\RockProject\Rocky\Rocky_DatAccess\bin\Debug\net5.0\Rocky_DatAccess.pdb
+F:\Project\RockProject\Rocky\Rocky_DatAccess\bin\Debug\net5.0\Rocky_Models.dll
+F:\Project\RockProject\Rocky\Rocky_DatAccess\bin\Debug\net5.0\Rocky_Models.pdb
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.csproj.AssemblyReference.cache
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.GeneratedMSBuildEditorConfig.editorconfig
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.AssemblyInfoInputs.cache
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.AssemblyInfo.cs
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.csproj.CoreCompileInputs.cache
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.csproj.CopyComplete
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.dll
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\refint\Rocky_DatAccess.dll
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.pdb
+F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\ref\Rocky_DatAccess.dll

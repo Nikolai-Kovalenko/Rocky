@@ -1,11 +1,11 @@
+F:\Project\RockProject\Rocky\Rocky_Utility\bin\Debug\net5.0\Rocky_Utility.deps.json
+F:\Project\RockProject\Rocky\Rocky_Utility\bin\Debug\net5.0\Rocky_Utility.dll
+F:\Project\RockProject\Rocky\Rocky_Utility\bin\Debug\net5.0\Rocky_Utility.pdb
 F:\Project\RockProject\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.csproj.AssemblyReference.cache
 F:\Project\RockProject\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.GeneratedMSBuildEditorConfig.editorconfig
 F:\Project\RockProject\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.AssemblyInfoInputs.cache
 F:\Project\RockProject\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.AssemblyInfo.cs
 F:\Project\RockProject\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.csproj.CoreCompileInputs.cache
-F:\Project\RockProject\Rocky\Rocky_Utility\bin\Debug\net5.0\Rocky_Utility.deps.json
-F:\Project\RockProject\Rocky\Rocky_Utility\bin\Debug\net5.0\Rocky_Utility.dll
-F:\Project\RockProject\Rocky\Rocky_Utility\bin\Debug\net5.0\Rocky_Utility.pdb
 F:\Project\RockProject\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.dll
 F:\Project\RockProject\Rocky\Rocky_Utility\obj\Debug\net5.0\refint\Rocky_Utility.dll
 F:\Project\RockProject\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.pdb
