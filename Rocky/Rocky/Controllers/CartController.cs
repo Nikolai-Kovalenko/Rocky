@@ -8,6 +8,7 @@ using Rocky_DatAccess.Repository.IRepository;
 using Rocky_Models;
 using Rocky_Models.ViewModels;
 using Rocky_Utility;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -97,6 +98,9 @@ namespace Rocky.Controllers
         [ActionName(nameof(Summary))]
         public async Task<IActionResult> SummaryPost(ProductUserVM ProductUserVM)
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
             var PathToTemplate = _webHostEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString()
                 + "templates" + Path.DirectorySeparatorChar.ToString()
                 + "Inquiry.html";
@@ -127,7 +131,30 @@ namespace Rocky.Controllers
 
             await _emailSender.SendEmailAsync(WC.EmailAdin, subject, messageBody);
 
-                return RedirectToAction(nameof(InquiryConfirmation));
+            InquiryHeader inquiryHeader = new InquiryHeader()
+            {
+                ApplicationUserId = claim.Value,
+                FuulName = ProductUserVM.ApplicationUser.FullName,
+                Email = ProductUserVM.ApplicationUser.Email,
+                PhoneNumber = ProductUserVM.ApplicationUser.PhoneNumber,
+                InquiryDate = DateTime.Now
+            };
+
+            _inqHeaderRepo.Add(inquiryHeader);
+            _inqHeaderRepo.Save();
+
+            foreach (var prod in ProductUserVM.ProductList)
+            {
+                InquiryDetail inquiryDetail = new InquiryDetail()
+                {
+                    InquiryHeaderId = inquiryHeader.Id,
+                    ProductId = prod.Id
+                };
+                _inqDetailRepo.Add(inquiryDetail);
+            }
+            _inqDetailRepo.Save();
+
+            return RedirectToAction(nameof(InquiryConfirmation));
         }
 
         public IActionResult InquiryConfirmation()
