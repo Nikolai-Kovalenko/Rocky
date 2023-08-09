@@ -21,18 +21,25 @@ namespace Rocky.Controllers
     public class CartController : Controller
     {
         private readonly IProductRepository _prodRepo;
+        private readonly IApplicationUserRepository _appUserRepo;
+        private readonly IInquiryDetailRepository _inqDetailRepo;
+        private readonly IInquiryHeaderRepository _inqHeaderRepo;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailSender _emailSender;
 
         [BindProperty]
         public ProductUserVM ProductUserVM { get; set; }
 
-        public CartController(IProductRepository prodRepo,
+        public CartController(IProductRepository prodRepo, IApplicationUserRepository appUserRepo,
+            IInquiryDetailRepository inqDetailRepo, IInquiryHeaderRepository inqHeaderRepo,
             IWebHostEnvironment webHostEnvironment, IEmailSender emailSender)
         {
-            _prodRepo = prodRepo;
+            _prodRepo           = prodRepo;
+            _appUserRepo        = appUserRepo;
+            _inqDetailRepo      = inqDetailRepo;
+            _inqHeaderRepo      = inqHeaderRepo;
             _webHostEnvironment = webHostEnvironment;
-            _emailSender = emailSender;
+            _emailSender        = emailSender;
         }
 
         public IActionResult Index()
@@ -46,7 +53,7 @@ namespace Rocky.Controllers
             }
 
             List<int> productCart = shoppingCartsList.Select(i => i.ProductId).ToList();
-            IEnumerable<Product> prodList = _db.Product.Where(u => productCart.Contains(u.Id));
+            IEnumerable<Product> prodList = _prodRepo.GetAll(u => productCart.Contains(u.Id));
 
             return View(prodList);
         }
@@ -74,11 +81,11 @@ namespace Rocky.Controllers
             }
 
             List<int> productCart = shoppingCartsList.Select(i => i.ProductId).ToList();
-            IEnumerable<Product> prodList = _db.Product.Where(u => productCart.Contains(u.Id));
+            IEnumerable<Product> prodList = _prodRepo.GetAll(u => productCart.Contains(u.Id));
 
             ProductUserVM = new ProductUserVM()
             {
-                ApplicationUser = _db.ApplicationUser.FirstOrDefault(u => u.Id == claim.Value),
+                ApplicationUser = _appUserRepo.FirstOrDefault(u => u.Id == claim.Value),
                 ProductList = prodList.ToList()
             };
 
