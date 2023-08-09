@@ -32,12 +32,48 @@ namespace Rocky_DatAccess.Repository
 
         public T FirstOrDefault(Expression<Func<T, bool>> filter = null, string includePropreties = null, bool isTracing = true)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            if (includePropreties != null)
+            {
+                foreach (var includeProp in includePropreties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            if (!isTracing)
+            {
+                query = query.AsNoTracking();
+            }
+            return query.FirstOrDefault();
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includePropreties = null, bool isTracing = true)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            if (includePropreties != null)
+            {
+                foreach (var includeProp in includePropreties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+            if(!isTracing) 
+            {
+                query = query.AsNoTracking();
+            }
+            return query.ToList();
         }
 
         public void Remove(T entity)
