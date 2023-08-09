@@ -16,5 +16,8 @@ namespace Rocky_Utility
         public const string CustomerRole = "Customer";
 
         public const string EmailAdin = "DFprotonMAil@proton.me";
+
+        public const string CategotyName = "Category";
+        public const string ApplicationTypeName = "ApplicationType";
     }
 }

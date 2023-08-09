@@ -131,6 +131,9 @@
             "projectReferences": {
               "F:\\Project\\RockProject\\Rocky\\Rocky_Models\\Rocky_Models.csproj": {
                 "projectPath": "F:\\Project\\RockProject\\Rocky\\Rocky_Models\\Rocky_Models.csproj"
+              },
+              "F:\\Project\\RockProject\\Rocky\\Rocky_Utility\\Rocky_Utility.csproj": {
+                "projectPath": "F:\\Project\\RockProject\\Rocky\\Rocky_Utility\\Rocky_Utility.csproj"
               }
             }
           }

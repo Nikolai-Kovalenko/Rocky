@@ -14,13 +14,13 @@ namespace Rocky_DatAccess.Repository.IRepository
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includePropreties = null,
-            bool isTracing = true
+            bool isTracking = true
             );
 
         T FirstOrDefault(
             Expression<Func<T, bool>> filter = null,
             string includePropreties = null,
-            bool isTracing = true
+            bool isTracking = true
             );
     
         void Add(T entity);

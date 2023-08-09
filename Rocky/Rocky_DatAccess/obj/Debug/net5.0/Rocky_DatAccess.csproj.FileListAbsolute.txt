@@ -13,3 +13,5 @@ F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.dl
 F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\refint\Rocky_DatAccess.dll
 F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\Rocky_DatAccess.pdb
 F:\Project\RockProject\Rocky\Rocky_DatAccess\obj\Debug\net5.0\ref\Rocky_DatAccess.dll
+F:\Project\RockProject\Rocky\Rocky_DatAccess\bin\Debug\net5.0\Rocky_Utility.dll
+F:\Project\RockProject\Rocky\Rocky_DatAccess\bin\Debug\net5.0\Rocky_Utility.pdb

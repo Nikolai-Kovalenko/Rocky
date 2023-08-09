@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rocky_DatAccess;
+using Rocky_DatAccess.Repository.IRepository;
 using Rocky_Models;
 using Rocky_Utility;
 using System.Collections;
@@ -11,18 +12,18 @@ using System.Data.SqlTypes;
 namespace Rocky.Controllers
 {
     [Authorize(Roles = WC.AdminRole)]
-    public class ApplicationTypeController : Controller
+    public class ApplicationTypeController : Controller 
     {
-        private readonly AppDbContext _db;
+        private readonly IApplicationTypeRepository _appTypeRepo;
 
-        public ApplicationTypeController(AppDbContext db)
+        public ApplicationTypeController(IApplicationTypeRepository appTypeRepo)
         {
-            _db = db;
+            _appTypeRepo = appTypeRepo;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<ApplicationType> ogjList = _db.ApplicationType;
+            IEnumerable<ApplicationType> ogjList = _appTypeRepo.GetAll();
             return View(ogjList);
         }
 
@@ -37,9 +38,9 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ApplicationType obj)
         {
-            if(ModelState.IsValid) { 
-                _db.ApplicationType.Add(obj);
-                _db.SaveChanges();
+            if(ModelState.IsValid) {
+                _appTypeRepo.Add(obj);
+                _appTypeRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -52,7 +53,7 @@ namespace Rocky.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.ApplicationType.Find(id);
+            var obj = _appTypeRepo.Find(id.GetValueOrDefault());
             if (obj == null)
             {
                 return NotFound();
@@ -68,8 +69,8 @@ namespace Rocky.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.ApplicationType.Update(obj);
-                _db.SaveChanges();
+                _appTypeRepo.Update(obj);
+                _appTypeRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -82,7 +83,7 @@ namespace Rocky.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.ApplicationType.Find(id);
+            var obj = _appTypeRepo.Find(id.GetValueOrDefault());
             if (obj == null)
             {
                 return NotFound();
@@ -96,15 +97,15 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.ApplicationType.Find(id);
+            var obj = _appTypeRepo.Find(id.GetValueOrDefault());
 
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _db.ApplicationType.Remove(obj);
-            _db.SaveChanges();
+            _appTypeRepo.Remove(obj);
+            _appTypeRepo.Save();
             return RedirectToAction("Index");
         }
     }

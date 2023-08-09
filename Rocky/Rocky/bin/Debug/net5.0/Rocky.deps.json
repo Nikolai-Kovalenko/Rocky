@@ -2528,7 +2528,8 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore.Relational": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
-          "Rocky_Models": "1.0.0"
+          "Rocky_Models": "1.0.0",
+          "Rocky_Utility": "1.0.0"
         },
         "runtime": {
           "Rocky_DatAccess.dll": {}
