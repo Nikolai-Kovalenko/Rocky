@@ -505,3 +505,4 @@ F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Rocky.pdb
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Rocky.genruntimeconfig.cache
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\ref\Rocky.dll
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Inquiry\Index.cshtml.g.cs
+F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Inquiry\Details.cshtml.g.cs

@@ -134,7 +134,7 @@ namespace Rocky.Controllers
             InquiryHeader inquiryHeader = new InquiryHeader()
             {
                 ApplicationUserId = claim.Value,
-                FuulName = ProductUserVM.ApplicationUser.FullName,
+                FullName = ProductUserVM.ApplicationUser.FullName,
                 Email = ProductUserVM.ApplicationUser.Email,
                 PhoneNumber = ProductUserVM.ApplicationUser.PhoneNumber,
                 InquiryDate = DateTime.Now
