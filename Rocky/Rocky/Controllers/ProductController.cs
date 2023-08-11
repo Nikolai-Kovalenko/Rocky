@@ -1,21 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Razor.Language.Intermediate;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Primitives;
-using Rocky_DatAccess;
 using Rocky_DatAccess.Repository.IRepository;
 using Rocky_Models;
 using Rocky_Models.ViewModels;
 using Rocky_Utility;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Linq;
 
 namespace Rocky.Controllers
 {
@@ -153,6 +145,7 @@ namespace Rocky.Controllers
                     _prodRepo.Update(productVM.Product);
                 }
 
+                TempData[WC.Success] = "Action completed successfully";
                 _prodRepo.Save();
                 return RedirectToAction("Index");
             }
@@ -203,6 +196,8 @@ namespace Rocky.Controllers
 
             _prodRepo.Remove(obj);
             _prodRepo.Save();
+
+            TempData[WC.Success] = "Product deleting successfully";
             return RedirectToAction("Index");
         }
 

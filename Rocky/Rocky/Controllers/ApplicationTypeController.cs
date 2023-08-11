@@ -41,8 +41,10 @@ namespace Rocky.Controllers
             if(ModelState.IsValid) {
                 _appTypeRepo.Add(obj);
                 _appTypeRepo.Save();
+                TempData[WC.Success] = "Application Tytpe created successfully";
                 return RedirectToAction("Index");
             }
+            TempData[WC.Error] = "Error while creating";
             return View(obj);
         }
 
@@ -71,8 +73,10 @@ namespace Rocky.Controllers
             {
                 _appTypeRepo.Update(obj);
                 _appTypeRepo.Save();
+                TempData[WC.Success] = "Application Tytpe edited successfully";
                 return RedirectToAction("Index");
             }
+            TempData[WC.Error] = "Error while editing";
             return View(obj);
         }
 
@@ -101,11 +105,13 @@ namespace Rocky.Controllers
 
             if (obj == null)
             {
+                TempData[WC.Error] = "Error while deleting";
                 return NotFound();
             }
 
             _appTypeRepo.Remove(obj);
             _appTypeRepo.Save();
+            TempData[WC.Success] = "Application Tytpe deleted successfully";
             return RedirectToAction("Index");
         }
     }

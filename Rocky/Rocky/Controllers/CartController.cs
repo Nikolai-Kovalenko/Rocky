@@ -154,6 +154,7 @@ namespace Rocky.Controllers
             }
             _inqDetailRepo.Save();
 
+            TempData[WC.Success] = "Inquiry submitted successfully";
             return RedirectToAction(nameof(InquiryConfirmation));
         }
 
