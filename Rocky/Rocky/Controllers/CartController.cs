@@ -70,16 +70,50 @@ namespace Rocky.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Index")]
-        public IActionResult IndexPost()
+        public IActionResult IndexPost(IEnumerable<Product> ProdIst)
         {
+            List<ShoppingCart> ShoppingCartList = new List<ShoppingCart>();
+            foreach (Product prod in ProdIst)
+            {
+                ShoppingCartList.Add(new ShoppingCart { ProductId = prod.Id, SqFt = prod.TempSqFt });
+            }
+
+            HttpContext.Session.Set(WC.SessionCart, ShoppingCartList);
+
             return RedirectToAction(nameof(Summary));
         }
          
         public IActionResult Summary()
         {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            // var userId = User.FindFirstValue(ClaimTypes.Name);
+            ApplicationUser applicationUser;
+
+            if (User.IsInRole(WC.AdminRole))
+            {
+                if(HttpContext.Session.Get<int>(WC.SessionInquiryId) !=0 )
+                {
+                    // cart has  been loaded using inquiry
+
+                    InquiryHeader inquiryHeader = _inqHeaderRepo.FirstOrDefault(u => u.Id == HttpContext.Session.Get<int>(WC.SessionInquiryId));
+                    applicationUser = new ApplicationUser()
+                    {
+                        Email = inquiryHeader.Email,
+                        FullName = inquiryHeader.FullName,
+                        PhoneNumber = inquiryHeader.PhoneNumber
+                    };
+                }
+                else
+                {
+                    applicationUser = new ApplicationUser();    
+                }
+            }
+            else
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                // var userId = User.FindFirstValue(ClaimTypes.Name);
+
+                applicationUser = _appUserRepo.FirstOrDefault(u => u.Id == claim.Value);
+            }
 
             List<ShoppingCart> shoppingCartsList = new List<ShoppingCart>();
             if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null
@@ -94,7 +128,7 @@ namespace Rocky.Controllers
 
             ProductUserVM = new ProductUserVM()
             {
-                ApplicationUser = _appUserRepo.FirstOrDefault(u => u.Id == claim.Value),
+                ApplicationUser = applicationUser,
                 ProductList = prodList.ToList()
             };
 
