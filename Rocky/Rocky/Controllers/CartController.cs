@@ -54,7 +54,15 @@ namespace Rocky.Controllers
             }
 
             List<int> productCart = shoppingCartsList.Select(i => i.ProductId).ToList();
-            IEnumerable<Product> prodList = _prodRepo.GetAll(u => productCart.Contains(u.Id));
+            IEnumerable<Product> prodListTemp = _prodRepo.GetAll(u => productCart.Contains(u.Id));
+            IList<Product> prodList = new List<Product>();
+
+            foreach(var catrObj in shoppingCartsList) 
+            { 
+                Product prodTemp = prodListTemp.FirstOrDefault(u => u.Id == catrObj.ProductId);
+                prodTemp.TempSqFt = catrObj.SqFt;
+                prodList.Add(prodTemp);
+            }   
 
             return View(prodList);
         }
@@ -177,6 +185,21 @@ namespace Rocky.Controllers
             shoppingCartsList.Remove(shoppingCartsList.FirstOrDefault(u => u.ProductId == id));
 
             HttpContext.Session.Set(WC.SessionCart, shoppingCartsList);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCart(IEnumerable<Product> ProdIst)
+        {
+            List<ShoppingCart> ShoppingCartList = new List<ShoppingCart>();
+            foreach (Product prod in ProdIst) 
+            { 
+                ShoppingCartList.Add(new ShoppingCart { ProductId = prod.Id, SqFt = prod.TempSqFt });
+            }
+
+            HttpContext.Session.Set(WC.SessionCart, ShoppingCartList);
 
             return RedirectToAction(nameof(Index));
         }
