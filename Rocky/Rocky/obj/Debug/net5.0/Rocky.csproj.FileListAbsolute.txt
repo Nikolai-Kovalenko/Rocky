@@ -507,3 +507,5 @@ F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\ref\Rocky.dll
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Inquiry\Index.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Inquiry\Details.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Shared\_Notifications.cshtml.g.cs
+F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Braintree.dll
+F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll

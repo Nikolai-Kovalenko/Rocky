@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Braintree;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -8,6 +9,7 @@ using Rocky_DatAccess.Repository.IRepository;
 using Rocky_Models;
 using Rocky_Models.ViewModels;
 using Rocky_Utility;
+using Rocky_Utility.BrainTree;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,7 +31,7 @@ namespace Rocky.Controllers
         private readonly IOrderDetailRepository _ordDetailRepo;
         private readonly IOrderHeaderRepository _ordHeaderRepo;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        
+        public readonly IBrainTreeGate _brain;
 
         [BindProperty]
         public ProductUserVM ProductUserVM { get; set; }
@@ -37,7 +39,7 @@ namespace Rocky.Controllers
         public CartController(IProductRepository prodRepo, IApplicationUserRepository appUserRepo,
             IInquiryDetailRepository inqDetailRepo, IInquiryHeaderRepository inqHeaderRepo,
             IWebHostEnvironment webHostEnvironment, IEmailSender emailSender,
-            IOrderDetailRepository ordDetailRepo, IOrderHeaderRepository ordHeaderRepo)
+            IOrderDetailRepository ordDetailRepo, IOrderHeaderRepository ordHeaderRepo, IBrainTreeGate brain)
         {
             _prodRepo           = prodRepo;
             _appUserRepo        = appUserRepo;
@@ -47,6 +49,7 @@ namespace Rocky.Controllers
             _emailSender        = emailSender;
             _ordHeaderRepo      = ordHeaderRepo;
             _ordDetailRepo      = ordDetailRepo;
+            _brain              = brain;
         }
 
         public IActionResult Index()
@@ -111,6 +114,10 @@ namespace Rocky.Controllers
                 {
                     applicationUser = new ApplicationUser();    
                 }
+
+                var gatway = _brain.GetGeteway();
+                var clientToken = gatway.ClientToken.Generate();
+                ViewBag.ClientToken = clientToken;
             }
             else
             {
@@ -150,7 +157,7 @@ namespace Rocky.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName(nameof(Summary))]
-        public async Task<IActionResult> SummaryPost(ProductUserVM ProductUserVM)
+        public async Task<IActionResult> SummaryPost(IFormCollection collection, ProductUserVM ProductUserVM)
         {
             
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -200,6 +207,33 @@ namespace Rocky.Controllers
                 }
                 _ordDetailRepo.Save();
 
+                string nonceFromTheClient = collection["payment_method_nonce"];
+
+                var request = new TransactionRequest
+                {
+                    Amount = Convert.ToDecimal(orderHeader.FinalOrderTotal),
+                    PaymentMethodNonce = nonceFromTheClient,
+                    OrderId = orderHeader.Id.ToString(),
+                    Options = new TransactionOptionsRequest
+                    {
+                        SubmitForSettlement = true
+                    }
+                };
+
+                var gateway = _brain.GetGeteway();
+                Result<Transaction> result = gateway.Transaction.Sale(request);
+
+                if(result.Target.ProcessorResponseText == "Approved")
+                {
+                    orderHeader.TransactionId = result.Target.Id;
+                    orderHeader.OrderStatus = WC.StatusApproved;
+                }
+                else
+                {
+                    orderHeader.OrderStatus = WC.StatusConcelled;
+                }
+
+                _ordHeaderRepo.Save();
                 return RedirectToAction(nameof(InquiryConfirmation), new {id = orderHeader.Id});
             }
             else
@@ -304,6 +338,12 @@ namespace Rocky.Controllers
             HttpContext.Session.Set(WC.SessionCart, ShoppingCartList);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Clear()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
