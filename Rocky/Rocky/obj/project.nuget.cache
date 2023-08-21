@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Fe+FdETnI8Db0SKduiC9S7JCFZsafcys8KSgbBD33ftZz/VGOyxG9NiSJhnouSM1DUQ1M4/VWWzHSniXW2uT1A==",
+  "dgSpecHash": "784hVpbvnHQsZ2qd4JwBYKg2LjF0HSnAdoeTSBcVU2RfHI+6ymPLo6Ts4mNdAw8Wr3IOyJyG5aKdFs+40EuBKg==",
   "success": true,
   "projectFilePath": "F:\\Project\\RockProject\\Rocky\\Rocky\\Rocky.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\nik\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\nik\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\nik\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\nik\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\5.0.17\\microsoft.aspnetcore.authentication.facebook.5.0.17.nupkg.sha512",
     "C:\\Users\\nik\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\nik\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\nik\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.17\\microsoft.aspnetcore.cryptography.internal.5.0.17.nupkg.sha512",

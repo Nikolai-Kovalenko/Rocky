@@ -509,3 +509,4 @@ F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Inquiry\Details.
 F:\Project\RockProject\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Shared\_Notifications.cshtml.g.cs
 F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Braintree.dll
 F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
+F:\Project\RockProject\Rocky\Rocky\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
