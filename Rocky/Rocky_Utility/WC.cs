@@ -1,6 +1,7 @@
 ﻿using Mailjet.Client.Resources;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -30,5 +31,16 @@ namespace Rocky_Utility
         public const string StatusShipped = "Shipped";
         public const string StatusConcelled = "Concelled";
         public const string StatusRefunded = "Refunded";
+
+        public static readonly IEnumerable<string> ListStatus = new ReadOnlyCollection<string>(
+            new List<string>
+            {
+                StatusApproved,
+                StatusConcelled,
+                StatusInProcess,
+                StatusShipped,
+                StatusConcelled,
+                StatusRefunded,
+            });
     }
 }
