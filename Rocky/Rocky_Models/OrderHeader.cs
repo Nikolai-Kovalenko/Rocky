@@ -16,7 +16,7 @@ namespace Rocky_Models
         public string CreatedByUserId { get; set; }
         [ForeignKey("CreatedByUserId")]
         public ApplicationUser CreatedBy { get; set; }
-
+    
         [Required]
         public DateTime OrderDate { get; set; }
 

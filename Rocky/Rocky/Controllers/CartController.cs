@@ -28,7 +28,7 @@ namespace Rocky.Controllers
         private readonly IApplicationUserRepository _appUserRepo;
         private readonly IInquiryDetailRepository _inqDetailRepo;
         private readonly IInquiryHeaderRepository _inqHeaderRepo;
-        private readonly IOrderDetailRepository _ordDetailRepo;
+        private readonly IOrderDetailRepository DetailRepo;
         private readonly IOrderHeaderRepository _ordHeaderRepo;
         private readonly IWebHostEnvironment _webHostEnvironment;
         public readonly IBrainTreeGate _brain;
